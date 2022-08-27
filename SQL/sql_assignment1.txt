@@ -1,0 +1,102 @@
+--CREATION OF DATABASE TABLES AND INSERTION OF RECORDS
+
+--Creating Table Customer
+CREATE TABLE Customer (
+Id int PRIMARY KEY,
+FirstName nvarchar(40) NOT NULL,
+LastName nvarchar(40),
+City nvarchar(40),
+Country nvarchar(40),
+Phone nvarchar(20)
+);
+
+--Creating Table Order
+CREATE TABLE [Order] (
+Id int PRIMARY KEY,
+OrderDate datetime NOT NULL,
+OrderNumber nvarchar(10),
+CustomerId int FOREIGN KEY REFERENCES Customer(Id),
+TotalAmount decimal(12, 2)
+);
+
+--Creating Table Product
+CREATE TABLE Product (
+Id int PRIMARY KEY,
+ProductName nvarchar(50),
+UnitPrice decimal(12, 2),
+Package nvarchar(30),
+isDiscontinued bit
+);
+
+--Creating Table OrderItem
+CREATE TABLE OrderItem (
+Id int PRIMARY KEY,
+OrderId int FOREIGN KEY REFERENCES [Order](Id),
+ProductId int FOREIGN KEY REFERENCES Product(Id),
+UnitPrice decimal(12, 2),
+Quantity int
+);
+
+--Inserting Records into Customer
+INSERT INTO Customer Values(1, 'Kevin', 'de Bruyne', 'Manchester', 'England', '1234567890');
+INSERT INTO Customer Values(2, 'Ronald', 'Araujo', 'Barcelona', 'Spain', '1234987890');
+INSERT INTO Customer Values(3, 'Leonel', 'Messi', 'Paris', 'France', '1094567890');
+INSERT INTO Customer Values(4, 'Joshua', 'Kimmich', 'Bayern', 'Germany', '1299567890');
+INSERT INTO Customer Values(5, 'Paolo', 'Dybala', 'Rome', 'Italy', '1234589890');
+INSERT INTO Customer Values(6, 'Sunil', 'Chhetri', 'Mumbai', 'India', '1230097890');
+INSERT INTO Customer Values(7, 'Erling', 'Haaland', 'Manchester', 'England', '1234569990');
+INSERT INTO Customer Values(8, 'Vinicius', 'Junior', 'Madrid', 'Spain', '1234980090');
+INSERT INTO Customer Values(9, 'Neymar', 'Junior', 'Paris', 'France', '1086767890');
+INSERT INTO Customer Values(10, 'Marcus', 'Reus', 'Dortmunt', 'Germany', '1087567890');
+INSERT INTO Customer Values(11, 'Paul', 'Pogba', 'Juventus', 'Italy', '1234588870');
+INSERT INTO Customer Values(12, 'Pedri', 'Gonzalez', 'Barcelona', 'Spain', '1230098870');
+
+--Inserting Records into Order
+--Skipping TotalAmount to be inserted from OrderItem Table
+INSERT INTO [Order] Values(1, '2022-10-22 23:59:59', '101', 5, NULL)
+INSERT INTO [Order] Values(2, '2016-03-03 23:59:59', '102', 7, NULL)
+INSERT INTO [Order] Values(3, '2019-08-17 23:59:59', '103', 12, NULL)
+INSERT INTO [Order] Values(4, '2021-10-21 23:59:59', '104', 3, NULL)
+INSERT INTO [Order] Values(5, '2018-11-24 23:59:59', '105', 8, NULL)
+INSERT INTO [Order] Values(6, '2021-06-04 23:59:59', '106', 3, NULL)
+
+--Inserting Records into Product
+INSERT INTO Product Values(1, 'Football', 34.99, 'Blue Dart', 0)
+INSERT INTO Product Values(2, 'Studs', 76.99, 'Blue Dart', 0)
+INSERT INTO Product Values(3, 'Kit', 43.99, 'Heaven', 0)
+INSERT INTO Product Values(4, 'Jersey', 29.99, 'Blue Dart', 1)
+
+--Inserting Records into OrderItem
+--Skipping UnitPrice to be inserted from product Table
+INSERT INTO OrderItem Values(1, 4, 3, NULL, 15)
+INSERT INTO OrderItem Values(2, 6, 2, NULL, 23)
+INSERT INTO OrderItem Values(3, 1, 4, NULL, 75)
+INSERT INTO OrderItem Values(4, 3, 2, NULL, 32)
+INSERT INTO OrderItem Values(5, 6, 2, NULL, 57)
+INSERT INTO OrderItem Values(6, 1, 1, NULL, 2)
+INSERT INTO OrderItem Values(7, 5, 3, NULL, 18)
+
+--Inserting UnitPrice value of Product from Product Table
+UPDATE OrderItem
+SET UnitPrice = 
+(SELECT UnitPrice FROM Product
+WHERE Product.Id = OrderItem.ProductId);
+
+--Inserting TotalAmount value of Order from OrderItem Table
+UPDATE [Order]
+SET TotalAmount = 
+(SELECT UnitPrice*Quantity FROM OrderItem
+WHERE OrderItem.Id = [Order].Id);
+
+--QUERIES:
+
+--5. Display all Costumer details
+SELECT * fROM Customer
+
+--6. Write a query to display Country whose name starts with A or I
+SELECT Country FROM Customer
+WHERE Country LIKE '[A,I]%';
+
+--7. Write a query to display name of customers whose third letter is i.
+SELECT FirstName FROM Customer
+WHERE FirstName LIKE '__i%';
