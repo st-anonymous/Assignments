@@ -85,33 +85,49 @@ namespace Assignment1
 
             //Qn6. To Store and Print details of Books
             Console.WriteLine("\nStore and Print details of Books:");
-            Console.Write("Enter bookId: ");
-            int bookId = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter Title: ");
-            string title = Console.ReadLine();
-            Console.Write("Enter Price: ");
-            double price = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Choose Catagory: \n1:Magazine \n2:Novel \n3:ReferenceBook \n4:Miscellaneous");
-            int opt = Convert.ToInt32(Console.ReadLine());
-            string bookType="";
-            switch (opt)
+            List<Book> books = new List<Book>();
+            while (true)
             {
-                case 1:
-                    bookType = "Magazine";
-                    break;
-                case 2:
-                    bookType = "Novel";
-                    break;
-                case 3:
-                    bookType = "ReferenceBook";
-                    break;
-                case 4:
-                    bookType = "Miscellaneous";
-                    break;
+                Console.WriteLine("Enter 1: Add Books \nEnter 2: Show Details \nEnter 0: Quit");
+                int val = Convert.ToInt32(Console.ReadLine());
+                if (val == 0) break;
+                if (val == 1)
+                {
+                    Console.Write("Enter bookId: ");
+                    int bookId = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter Title: ");
+                    string title = Console.ReadLine();
+                    Console.Write("Enter Price: ");
+                    double price = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Choose Catagory: \n1:Magazine \n2:Novel \n3:ReferenceBook \n4:Miscellaneous");
+                    int opt = Convert.ToInt32(Console.ReadLine());
+                    string bookType = "";
+                    switch (opt)
+                    {
+                        case 1:
+                            bookType = "Magazine";
+                            break;
+                        case 2:
+                            bookType = "Novel";
+                            break;
+                        case 3:
+                            bookType = "ReferenceBook";
+                            break;
+                        case 4:
+                            bookType = "Miscellaneous";
+                            break;
+                    }
+                    Book book = new Book(bookId, title, price, bookType);
+                    books.Add(book);
+                }
+                if (val == 2)
+                {
+                    foreach (Book book in books)
+                    {
+                        Console.WriteLine(book.ToString());
+                    }
+                }
             }
-            Book book = new Book(bookId, title, price, bookType);
-            Console.Write(book.ToString());
-            Console.ReadLine();
         }
     }
 }
