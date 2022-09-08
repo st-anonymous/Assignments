@@ -24,9 +24,9 @@ namespace Task2
         public MyStack CloneStack()
         {
             MyStack stack = new MyStack(this.Size);
-            foreach(int num in this.Array)
+            for (int i = 0; i < Index; i++)
             {
-                stack.Push(num);
+                stack.Push(this.Array[i]);
             }
             return stack;
         }
@@ -56,6 +56,19 @@ namespace Task2
             if(Index > 0)
             {
                 return Val;
+            }
+            else throw new StackException("\n\tEmpty Stack");
+        }
+        public void Show()
+        {
+            if (Index > 0)
+            {
+                Console.Write("\n\t");
+                for(int i=0; i<Index; i++)
+                {
+                    Console.Write(this.Array[i] + " ");
+                }
+                Console.WriteLine();
             }
             else throw new StackException("\n\tEmpty Stack");
         }

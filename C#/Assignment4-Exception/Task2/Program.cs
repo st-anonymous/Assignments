@@ -16,7 +16,7 @@ namespace Task2
             MyStack stack = new MyStack(n);
             while (true)
             {
-                Console.Write("\n 1. Push\n 2. Pop\n 3. Peek\n 0. Exit\n Enter Operation: ");
+                Console.Write("\n 1. Push\n 2. Pop\n 3. Peek\n 4. Clone\n 5. Show\n 0. Exit\n Enter Operation: ");
                 int opt = Convert.ToInt32(Console.ReadLine());
                 if (opt == 0) break;
                 if (opt == 1)
@@ -42,6 +42,25 @@ namespace Task2
                     try
                     {
                         Console.WriteLine("\n\tThe Number at Top of Stack is: " + stack.Peek());
+                    }
+                    catch (StackException e) { Console.WriteLine(e.Message); }
+                }
+                if (opt == 4)
+                {
+                    try
+                    {
+                        MyStack CopiedStack =  stack.CloneStack();
+                        Console.WriteLine("\n\tStack is Cloned. The Elements in ClonedStack Are:");
+                        CopiedStack.Show();
+                    }
+                    catch (StackException e) { Console.WriteLine(e.Message); }
+                    
+                }
+                if (opt == 5)
+                {
+                    try
+                    {
+                        stack.Show();
                     }
                     catch (StackException e) { Console.WriteLine(e.Message); }
                 }
