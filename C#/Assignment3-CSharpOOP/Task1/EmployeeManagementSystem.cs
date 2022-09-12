@@ -13,7 +13,7 @@ namespace Task1
             List<Employee> employees = new List<Employee>();
             while (true)
             {
-                Console.Write("\n 1. Add Employee\n 2. Show Salary\n 0. Exit\n Enter Option: ");
+                Console.Write("\n 1. Add Employee\n 2. Show Salaries\n 3. No of Employees\n 0. Exit\n Enter Option: ");
                 int opt = Convert.ToInt32(Console.ReadLine());
                 if (opt == 0) break;
                 if (opt == 1)
@@ -58,6 +58,10 @@ namespace Task1
                     {
                         Console.WriteLine("\n" + emp.ShowDetails());
                     }
+                }
+                if (opt == 3)
+                {
+                    Console.WriteLine("\n Total Number of Employees is: " + employees.Count);
                 }
             }
 

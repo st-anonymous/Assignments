@@ -1,0 +1,8 @@
+D:\Capgemini Assignment\Assignments\C#\Assignment5-CollectionFramework\bin\Debug\Assignment5-CollectionFramework.exe.config
+D:\Capgemini Assignment\Assignments\C#\Assignment5-CollectionFramework\bin\Debug\Assignment5-CollectionFramework.exe
+D:\Capgemini Assignment\Assignments\C#\Assignment5-CollectionFramework\bin\Debug\Assignment5-CollectionFramework.pdb
+D:\Capgemini Assignment\Assignments\C#\Assignment5-CollectionFramework\obj\Debug\Assignment5-CollectionFramework.csproj.AssemblyReference.cache
+D:\Capgemini Assignment\Assignments\C#\Assignment5-CollectionFramework\obj\Debug\Assignment5-CollectionFramework.csproj.SuggestedBindingRedirects.cache
+D:\Capgemini Assignment\Assignments\C#\Assignment5-CollectionFramework\obj\Debug\Assignment5-CollectionFramework.csproj.CoreCompileInputs.cache
+D:\Capgemini Assignment\Assignments\C#\Assignment5-CollectionFramework\obj\Debug\Assignment5-CollectionFramework.exe
+D:\Capgemini Assignment\Assignments\C#\Assignment5-CollectionFramework\obj\Debug\Assignment5-CollectionFramework.pdb
